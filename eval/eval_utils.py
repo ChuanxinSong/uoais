@@ -643,7 +643,7 @@ def eval_visible_on_OCID(args):
         anno = imageio.imread(anno_path)
         anno = cv2.resize(anno, (W, H), interpolation=cv2.INTER_NEAREST)        
         # remove background, table
-        floor_table = rgb_path.split("/")[4]
+        floor_table = rgb_path.split("/")[8] #这里需要更改
         for label in BG_LABELS[floor_table]:
             anno[anno == label] = 0         
         labels_anno = np.unique(anno)

@@ -28,7 +28,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dataset-path",
         type=str,
-        default="./datasets/OCID-dataset",
+        default="/media/user/data1/dataset/UOIS/OCID",
         help="path to the OSD dataset"
     )
 

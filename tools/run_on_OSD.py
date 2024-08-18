@@ -4,7 +4,8 @@ import glob
 import multiprocessing as mp
 import os
 import cv2
-import imageio
+# import imageio
+import imageio.v2 as imageio
 import random
 import numpy as np
 # constants
@@ -129,11 +130,15 @@ if __name__ == "__main__":
         vis_img = visualize_pred_amoda_occ(rgb_img, preds, bboxes, pred_occs)
         vis_all_img = np.hstack([rgb_img, depth_img, vis_img])
 
-        cv2.imshow(rgb_path.split("/")[-1] + "/ Press any key to view the next. / ESC: quit", vis_all_img)
-        k = cv2.waitKey(0)
-        if k == 27: # esc
-            break  
-        else:
-            cv2.destroyAllWindows()
+        # 保存结果而不是显示
+        output_path = os.path.join('output', os.path.basename(rgb_path))
+        cv2.imwrite(output_path, vis_all_img)
+
+        # cv2.imshow(rgb_path.split("/")[-1] + "/ Press any key to view the next. / ESC: quit", vis_all_img)
+        # k = cv2.waitKey(0)
+        # if k == 27: # esc
+        #     break  
+        # else:
+        #     cv2.destroyAllWindows()
 
     

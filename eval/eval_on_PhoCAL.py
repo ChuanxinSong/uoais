@@ -12,8 +12,9 @@ if __name__ == "__main__":
     # model config   
     parser.add_argument("--config-file", 
         default="./configs/R50_rgbdconcat_mlc_occatmask_hom_concat.yaml", 
-        metavar="FILE", help="path to config file")    
-    parser.add_argument("--gpu", type=str, default="0", help="GPU id")
+        # default="./configs/R50_rgb_mlc_occatmask_hom_concat.yaml", 
+        metavar="FILE", help="path to config file")
+    parser.add_argument("--gpu", type=str, default="2", help="GPU id")
     parser.add_argument(
         "--use-cgnet",
         action="store_true",
@@ -29,11 +30,18 @@ if __name__ == "__main__":
         "--dataset-path",
         type=str,
         default="/media/user/data1/dataset/PhoCAL",
-        help="path to the OSD dataset"
+        help="path to the PhoCAL dataset"
+    )
+    parser.add_argument(
+        "--result-save-root",
+        type=str,
+        default="/media/user/data1/rcao/result/uois/PhoCAL/uoais-net_rgbd_cgnet_mask",
+        help="path to save inference result"
     )
 
-
     args = parser.parse_args()
+    print(args)
+    # args.use_cgnet = True
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
     eval_visible_on_PhoCAL(args)
     

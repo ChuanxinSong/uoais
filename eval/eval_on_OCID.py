@@ -11,8 +11,9 @@ if __name__ == "__main__":
 
     # model config   
     parser.add_argument("--config-file", 
-        default="./configs/R50_rgbdconcat_mlc_occatmask_hom_concat.yaml", 
-        metavar="FILE", help="path to config file")    
+        # default="./configs/R50_rgbdconcat_mlc_occatmask_hom_concat.yaml", 
+        default="./configs/R50_rgb_mlc_occatmask_hom_concat.yaml", 
+        metavar="FILE", help="path to config file")
     parser.add_argument("--gpu", type=str, default="0", help="GPU id")
     parser.add_argument(
         "--use-cgnet",
@@ -28,12 +29,20 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dataset-path",
         type=str,
-        default="/media/user/data1/dataset/UOIS/OCID",
-        help="path to the OSD dataset"
+        default="/media/user/data1/dataset/OCID",
+        help="path to the OCID dataset"
     )
 
-
+    parser.add_argument(
+        "--result-save-root",
+        type=str,
+        default="/media/user/data1/rcao/result/uois/OCID/uoais-net_rgb_mask",
+        help="path to save inference result"
+    )
+    
     args = parser.parse_args()
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+    # os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+    # args.use_cgnet = True
     eval_visible_on_OCID(args)
     
